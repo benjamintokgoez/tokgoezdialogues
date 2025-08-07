@@ -11,7 +11,7 @@ description: >-
   Conversations with critical AI and reflections on technology, philosophy, and life
   from a Solution Architect's perspective.
 baseurl: ""
-url: "https://benjamintokgoez.github.io"
+url: "https://tokgoezdialogues.com"
 
 # Build settings
 markdown: kramdown
