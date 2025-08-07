@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<!--
+{%- comment -%}
 /**
  * Tokgöz Dialogues - Homepage
  * 
@@ -11,7 +11,7 @@ layout: default
  * @description Main homepage with blog intro and post filtering
  * @license MIT
  */
--->
+{%- endcomment -%}
 
 <div class="home">
   {%- if page.title -%}

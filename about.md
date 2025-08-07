@@ -3,7 +3,7 @@ layout: default
 title: About
 permalink: /about/
 ---
-<!--
+{%- comment -%}
 /**
  * Tokgöz Dialogues - About Page
  * 
@@ -13,7 +13,7 @@ permalink: /about/
  * @description About page with author information
  * @license MIT
  */
--->
+{%- endcomment -%}
 
 <div class="about-page">
   <div class="about-header">
