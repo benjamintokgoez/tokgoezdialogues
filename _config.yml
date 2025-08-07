@@ -72,14 +72,14 @@ social:
   twitter: benn0rs
   linkedin: tokgoez
   mastodon:
-    - username: benjamintokgoez
-      instance: mastodon.social
+    - username: benn0rs
+      instance: fosstodon.org
   links:
     - https://github.com/benjamintokgoez
     - https://www.linkedin.com/in/tokgoez/
     - https://x.com/benn0rs
-    - https://bsky.app/profile/benjamintokgoez.bsky.social
-    - https://mastodon.social/@benjamintokgoez
+    - https://bsky.app/profile/benn0rs.bsky.social
+    - https://fosstodon.org/@benn0rs
 
 # Social media configuration for minima theme
 minima:
@@ -88,5 +88,5 @@ minima:
     twitter: benn0rs
     linkedin: tokgoez
     mastodon:
-      - username: benjamintokgoez
-        instance: mastodon.social
+      - username: benn0rs
+        instance: fosstodon.org

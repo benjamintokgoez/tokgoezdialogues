@@ -6,13 +6,15 @@ permalink: /about/
 
 <div class="about-page">
   <div class="about-header">
-    <div class="profile-images">
-      <img src="/assets/images/benjamin-profile.jpg" alt="Benjamin Tokgöz" class="profile-photo">
-      <img src="/assets/images/dog-photo.jpg" alt="My walking companion" class="dog-photo">
+    <div class="about-intro-section">
+      <img src="https://github.com/benjamintokgoez.png" alt="Benjamin Tokgöz" class="profile-photo-solo">
+      <div class="about-intro">
+        <h1>About Benjamin Tokgöz</h1>
+        <p class="tagline">Walking, thinking, and challenging ideas—one conversation at a time.</p>
+      </div>
     </div>
-    <div class="about-intro">
-      <h1>About Benjamin Tokgöz</h1>
-      <p class="tagline">Walking, thinking, and challenging ideas—one conversation at a time.</p>
+    <div class="profile-images">
+      <img src="/assets/images/linux.png" alt="My walking companion" class="dog-photo">
     </div>
   </div>
 

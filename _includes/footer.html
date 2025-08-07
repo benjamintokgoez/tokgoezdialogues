@@ -37,6 +37,8 @@
   // Apply the current theme
   if (currentTheme === 'dark') {
     body.setAttribute('data-theme', 'dark');
+  } else {
+    body.setAttribute('data-theme', 'light');
   }
   
   // Theme toggle click handler
@@ -45,7 +47,7 @@
       const currentTheme = body.getAttribute('data-theme');
       
       if (currentTheme === 'dark') {
-        body.removeAttribute('data-theme');
+        body.setAttribute('data-theme', 'light');
         localStorage.setItem('theme', 'light');
       } else {
         body.setAttribute('data-theme', 'dark');

@@ -1,8 +1,6 @@
 ---
 ---
 
-@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Source+Code+Pro:wght@400;500&display=swap");
-
 // Custom variables - Light Theme (default)
 :root {
   --primary-color: #ffffff;
@@ -138,8 +136,41 @@ p {
     transform: rotate(180deg);
   }
   
-  // When in light mode
-  [data-theme="light"] & {
+  @media screen and (max-width: 600px) {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+}
+
+// When in light mode, show sun icon (hide moon)
+[data-theme="light"] .theme-toggle {
+  .dark-icon {
+    opacity: 0;
+    transform: rotate(180deg);
+  }
+  
+  .light-icon {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+
+// When in dark mode, show moon icon (hide sun)
+[data-theme="dark"] .theme-toggle {
+  .dark-icon {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+  
+  .light-icon {
+    opacity: 0;
+    transform: rotate(180deg);
+  }
+}
+
+// Ensure mobile theme toggle inherits the same behavior
+@media screen and (max-width: 600px) {
+  [data-theme="light"] .site-nav .theme-toggle {
     .dark-icon {
       opacity: 0;
       transform: rotate(180deg);
@@ -150,10 +181,17 @@ p {
       transform: rotate(0deg);
     }
   }
-  
-  @media screen and (max-width: 600px) {
-    margin-left: 0;
-    margin-top: 0.5rem;
+
+  [data-theme="dark"] .site-nav .theme-toggle {
+    .dark-icon {
+      opacity: 1;
+      transform: rotate(0deg);
+    }
+    
+    .light-icon {
+      opacity: 0;
+      transform: rotate(180deg);
+    }
   }
 }
 
@@ -262,13 +300,14 @@ p {
     border: 1px solid var(--border-color);
     border-radius: 5px;
     text-align: right;
+    z-index: 1000;
 
     label[for="nav-trigger"] {
       display: block;
       float: right;
       width: 36px;
       height: 36px;
-      z-index: 2;
+      z-index: 1001;
       cursor: pointer;
     }
 
@@ -294,6 +333,7 @@ p {
     input:checked ~ .trigger {
       display: block;
       padding-bottom: 5px;
+      box-shadow: 0 4px 12px var(--shadow-color);
     }
 
     .page-link {
@@ -310,6 +350,26 @@ p {
       display: block;
       margin: 10px 20px 5px 20px;
       width: calc(100% - 40px);
+      height: 2.2rem;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      
+      .theme-icon {
+        font-size: 1.1rem;
+        position: absolute;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      
+      .dark-icon {
+        opacity: 1;
+        transform: rotate(0deg);
+      }
+      
+      .light-icon {
+        opacity: 0;
+        transform: rotate(180deg);
+      }
     }
   }
 }
@@ -1755,13 +1815,27 @@ a:focus {
 
 .about-header {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 2rem;
   margin-bottom: 3rem;
   padding: 2rem 0;
   
   @media screen and (max-width: 768px) {
-    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+}
+
+.about-intro-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  margin-bottom: 2rem;
+  
+  @media screen and (max-width: 768px) {
+    flex-direction: column-reverse;
     text-align: center;
     gap: 1.5rem;
   }
@@ -1773,6 +1847,7 @@ a:focus {
   align-items: center;
   gap: 1rem;
   flex-shrink: 0;
+  width: 100%;
 }
 
 .profile-photo {
@@ -1795,26 +1870,28 @@ a:focus {
 }
 
 .dog-photo {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: 100%;
+  max-width: 75ch;
+  height: 200px;
+  border-radius: 12px;
   object-fit: cover;
   border: 2px solid var(--text-muted);
-  box-shadow: 0 2px 8px var(--shadow-color);
+  box-shadow: 0 4px 12px var(--shadow-color);
   transition: transform 0.3s ease;
   
   &:hover {
-    transform: scale(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px var(--shadow-color);
   }
   
   @media screen and (max-width: 768px) {
-    width: 70px;
-    height: 70px;
+    height: 150px;
   }
 }
 
 .about-intro {
-  flex-grow: 1;
+  text-align: left;
+  flex: 1;
   
   h1 {
     margin-top: 0;
@@ -1823,6 +1900,7 @@ a:focus {
     
     @media screen and (max-width: 768px) {
       font-size: 2rem;
+      text-align: center;
     }
   }
   
@@ -1835,6 +1913,27 @@ a:focus {
     
     @media screen and (max-width: 768px) {
       font-size: 1.1rem;
+      text-align: center;
     }
+  }
+}
+
+.profile-photo-solo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent-color);
+  box-shadow: 0 4px 12px var(--shadow-color);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+  
+  @media screen and (max-width: 768px) {
+    width: 100px;
+    height: 100px;
   }
 }
