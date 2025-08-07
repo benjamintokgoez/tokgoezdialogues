@@ -14,7 +14,7 @@ permalink: /about/
       </div>
     </div>
     <div class="profile-images">
-      <img src="/assets/images/linux.png" alt="My walking companion" class="dog-photo">
+      <img src="https://github.com/benjamintokgoez/tokgoezdialogues/blob/main/assets/images/linux.png" alt="My walking companion" class="dog-photo">
     </div>
   </div>
 
