@@ -1,8 +1,12 @@
 #!/bin/bash
-
-#!/bin/bash
+#
+# Tokgöz Dialogues - Setup and Deployment Script
 # 
-# Tokgoez Dialogues - Setup and Deployment Script
+# @author Benjamin Tokgöz <https://github.com/benjamintokgoez>
+# @created 2025-08-07
+# @updated 2025-08-07
+# @description Setup script for Jekyll blog and GitHub Pages deployment
+# @license MIT
 # 
 # This script sets up the Jekyll blog and prepares it for deployment
 # to GitHub Pages with automated workflows.

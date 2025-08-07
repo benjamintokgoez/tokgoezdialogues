@@ -1,6 +1,17 @@
 ---
 layout: default
 ---
+<!--
+/**
+ * Tokgöz Dialogues - Homepage
+ * 
+ * @author Benjamin Tokgöz <https://github.com/benjamintokgoez>
+ * @created 2025-08-07
+ * @updated 2025-08-07
+ * @description Main homepage with blog intro and post filtering
+ * @license MIT
+ */
+-->
 
 <div class="home">
   {%- if page.title -%}

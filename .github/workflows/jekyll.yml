@@ -1,3 +1,11 @@
+# Tokgöz Dialogues - GitHub Actions Workflow
+#
+# @author Benjamin Tokgöz <https://github.com/benjamintokgoez>
+# @created 2025-08-07
+# @updated 2025-08-07
+# @description GitHub Pages deployment workflow for Jekyll site
+# @license MIT
+
 name: Build and Deploy Jekyll Site
 
 on:

@@ -21,6 +21,5 @@ This blog embodies several principles:
 ## Contact
 
 - **GitHub:** [@benjamintokgoez](https://github.com/benjamintokgoez)
-- **Email:** [Update in _config.yml]
 
 ---

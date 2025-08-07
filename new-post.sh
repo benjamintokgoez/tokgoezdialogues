@@ -1,5 +1,13 @@
 #!/bin/bash
-
+#
+# Tokgöz Dialogues - New Post Creation Script
+# 
+# @author Benjamin Tokgöz <https://github.com/benjamintokgoez>
+# @created 2025-08-07
+# @updated 2025-08-07
+# @description Script to create new blog posts with proper formatting
+# @license MIT
+#
 # Script to create a new blog post with proper formatting
 # Usage: ./new-post.sh "Post Title" tag1,tag2,tag3
 

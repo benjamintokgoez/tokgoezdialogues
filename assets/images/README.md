@@ -25,4 +25,4 @@
 1. Place your images in the `/assets/images/` directory
 2. Ensure they're named exactly as specified above
 3. Square format works best for circular display
-4. Higher resolution recommended for retina displays
+4dad. Higher resolution recommended for retina displays

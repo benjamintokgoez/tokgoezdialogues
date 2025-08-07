@@ -1,3 +1,11 @@
+# Tokgöz Dialogues - Jekyll Configuration
+#
+# @author Benjamin Tokgöz <https://github.com/benjamintokgoez>
+# @created 2025-08-07
+# @updated 2025-08-07
+# @description Main Jekyll configuration for blog site
+# @license MIT
+#
 # Welcome to Jekyll!
 #
 # This config file is meant for settings that affect your whole blog, values
@@ -8,8 +16,7 @@
 # Site settings
 title: "Tokgöz Dialogues"
 description: >-
-  Conversations with critical AI and reflections on technology, philosophy, and life
-  from a Solution Architect's perspective.
+  Conversations with critical AI and reflections on technology, philosophy and more.
 baseurl: ""
 url: "https://tokgoezdialogues.com"
 

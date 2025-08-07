@@ -1,5 +1,13 @@
 #!/bin/bash
-
+#
+# Tokgöz Dialogues - Post Management Script
+# 
+# @author Benjamin Tokgöz <https://github.com/benjamintokgoez>
+# @created 2025-08-07
+# @updated 2025-08-07
+# @description Enhanced script to manage blog posts (create, delete, list)
+# @license MIT
+#
 # Enhanced script to manage blog posts
 # Usage: 
 #   ./manage-posts.sh create "Post Title" [tags]
