@@ -1,0 +1,78 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+
+# Site settings
+title: "Tokgöz Dialogues"
+email: benjamin@tokgoez.net
+description: >-
+  Conversations with critical AI and reflections on technology, philosophy, and life
+  from a Solution Architect's perspective.
+baseurl: ""
+url: "https://benjamintokgoez.github.io"
+twitter_username: benn0rs
+github_username: benjamintokgoez
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /:categories/:year/:month/:day/:title/
+
+# Default values
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Benjamin Tokgöz"
+      show_excerpts: true
+
+# Syntax highlighting
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+
+# SEO
+author:
+  name: Benjamin Tokgöz
+  email: benjamin@tokgoez.net
+  
+social:
+  name: Benjamin Tokgöz
+  github: benjamintokgoez
+  twitter: benn0rs
+  links:
+    - https://github.com/benjamintokgoez

@@ -1,0 +1,109 @@
+---
+layout: default
+---
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    <div class="post-meta">
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        {{ page.date | date: date_format }}
+      </time>
+      {%- if page.modified_date -%}
+        ~ 
+        {%- assign mdate = page.modified_date | date_to_xmlschema -%}
+        <time class="dt-modified" datetime="{{ mdate }}" itemprop="dateModified">
+          {{ mdate | date: date_format }}
+        </time>
+      {%- endif -%}
+      {%- if page.author -%}
+        • {% for author in page.author %}
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
+            {%- if forloop.last == false %}, {% endif -%}
+        {% endfor %}
+      {%- endif -%}
+    </div>
+    
+    {%- if page.tags.size > 0 -%}
+      <div class="post-tags">
+        {%- for tag in page.tags -%}
+          <span class="tag">{{ tag }}</span>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+    
+    {%- if page.ai_dialogue_model or page.ai_generation_model -%}
+      <div class="ai-transparency">
+        <div class="ai-transparency-header">
+          <span class="ai-icon">🤖</span>
+          <span class="ai-transparency-title">AI Transparency</span>
+        </div>
+        
+        <div class="ai-models">
+          {%- if page.ai_dialogue_model -%}
+            <div class="ai-model-info">
+              <strong>Dialogue Model:</strong> {{ page.ai_dialogue_model }}
+            </div>
+          {%- endif -%}
+          
+          {%- if page.ai_generation_model -%}
+            <div class="ai-model-info">
+              <strong>Generation Model:</strong> {{ page.ai_generation_model }}
+            </div>
+          {%- endif -%}
+        </div>
+        
+        {%- if page.ai_prompts -%}
+          <div class="ai-prompts-section">
+            <button class="ai-prompts-toggle" onclick="toggleAIPrompts()">
+              <span class="toggle-icon">▶</span>
+              View Prompts Used
+            </button>
+            
+            <div class="ai-prompts-content" id="ai-prompts-content" style="display: none;">
+              {%- for prompt in page.ai_prompts -%}
+                <div class="ai-prompt">
+                  <div class="ai-prompt-header">
+                    <strong>{{ prompt.type | default: "Prompt" }}:</strong>
+                    {%- if prompt.model -%}
+                      <span class="prompt-model">({{ prompt.model }})</span>
+                    {%- endif -%}
+                  </div>
+                  <div class="ai-prompt-content">
+                    <pre><code>{{ prompt.content }}</code></pre>
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  {%- if site.disqus.shortname -%}
+    {%- include disqus_comments.html -%}
+  {%- endif -%}
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+  
+  <div class="post-navigation">
+    {%- if page.previous.url -%}
+      <div class="prev-post">
+        <a href="{{ page.previous.url | relative_url }}">&larr; {{ page.previous.title }}</a>
+      </div>
+    {%- endif -%}
+    
+    {%- if page.next.url -%}
+      <div class="next-post">
+        <a href="{{ page.next.url | relative_url }}">{{ page.next.title }} &rarr;</a>
+      </div>
+    {%- endif -%}
+  </div>
+</article>

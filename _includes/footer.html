@@ -1,0 +1,160 @@
+<footer class="site-footer h-card">
+  <data class="u-url" href="{{ "/" | relative_url }}"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">
+            {%- if site.author.name -%}
+              {{ site.author.name | escape }}
+            {%- elsif site.author -%}
+              {{ site.author | escape }}
+            {%- else -%}
+              {{ site.title | escape }}
+            {%- endif -%}
+          </li>
+          {%- if site.author.email -%}
+            <li><a class="u-email" href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></li>
+          {%- elsif site.email -%}
+            <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+          {%- endif -%}
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        {%- include social.html -%}
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>{{- site.description | escape -}}</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="terminal-style">
+        <span class="prompt">root@tokgoez-dialogues:~#</span> 
+        <span class="command">echo "{{ 'now' | date: '%Y' }} - Powered by Jekyll & GenAI"</span>
+      </p>
+    </div>
+
+  </div>
+
+</footer>
+
+<script>
+// Theme switcher functionality
+(function() {
+  const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
+  
+  // Check for saved theme preference or default to dark
+  const currentTheme = localStorage.getItem('theme') || 'dark';
+  
+  // Apply the current theme
+  if (currentTheme === 'light') {
+    body.setAttribute('data-theme', 'light');
+  }
+  
+  // Theme toggle click handler
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function() {
+      const currentTheme = body.getAttribute('data-theme');
+      
+      if (currentTheme === 'light') {
+        body.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        body.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  }
+  
+  // Smooth transition for theme changes
+  body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+})();
+
+// Archive search functionality
+if (document.getElementById('search-input')) {
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-input');
+    const yearFilter = document.getElementById('year-filter');
+    const tagFilter = document.getElementById('tag-filter-archive');
+    const yearSections = document.querySelectorAll('.year-section');
+    
+    if (!searchInput || !yearFilter || !tagFilter) return;
+    
+    function filterPosts() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const selectedYear = yearFilter.value;
+      const selectedTag = tagFilter.value;
+      
+      yearSections.forEach(yearSection => {
+        const year = yearSection.getAttribute('data-year');
+        let hasVisiblePosts = false;
+        
+        const postsInYear = yearSection.querySelectorAll('.archive-post-item');
+        postsInYear.forEach(post => {
+          const title = post.getAttribute('data-title') || '';
+          const content = post.getAttribute('data-content') || '';
+          const tags = post.getAttribute('data-tags') || '';
+          
+          let matches = true;
+          
+          // Year filter
+          if (selectedYear && year !== selectedYear) {
+            matches = false;
+          }
+          
+          // Tag filter
+          if (selectedTag && !tags.includes(selectedTag)) {
+            matches = false;
+          }
+          
+          // Search filter
+          if (searchTerm && !title.includes(searchTerm) && !content.includes(searchTerm)) {
+            matches = false;
+          }
+          
+          if (matches) {
+            post.style.display = 'flex';
+            hasVisiblePosts = true;
+          } else {
+            post.style.display = 'none';
+          }
+        });
+        
+        // Hide year section if no posts are visible
+        yearSection.style.display = hasVisiblePosts ? 'block' : 'none';
+      });
+    }
+    
+    // Add event listeners
+    searchInput.addEventListener('input', filterPosts);
+    yearFilter.addEventListener('change', filterPosts);
+    tagFilter.addEventListener('change', filterPosts);
+    
+    // Initial filter to ensure everything displays correctly
+    filterPosts();
+  });
+}
+
+// AI Prompts Toggle Function
+function toggleAIPrompts() {
+  const content = document.getElementById('ai-prompts-content');
+  const toggle = document.querySelector('.ai-prompts-toggle');
+  const icon = toggle.querySelector('.toggle-icon');
+  
+  if (content.style.display === 'none' || content.style.display === '') {
+    content.style.display = 'block';
+    icon.textContent = '▼';
+    toggle.setAttribute('aria-expanded', 'true');
+  } else {
+    content.style.display = 'none';
+    icon.textContent = '▶';
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+}
+</script>
