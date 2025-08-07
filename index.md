@@ -8,16 +8,25 @@ layout: default
   {%- endif -%}
 
   <div class="intro-section">
-    <h2>Tokgöz Dialogues</h2>
+    <div class="intro-header">
+      <h2>Tokgöz Dialogues</h2>
+      <div class="profile-image">
+        <img src="https://github.com/benjamintokgoez.png" alt="Benjamin Tokgöz" class="profile-pic">
+      </div>
+    </div>
     <blockquote class="hero-quote">
       Come and join me for a walk with my dog.
     </blockquote>
-   
-    <div class="about-me">
-      <p>
-        <strong>About me:</strong> Short about me text
-      </p>
-    </div>
+    
+    <p>I love learning and how it can shape people's minds and our world. I also love sharing thoughts, ideas, and being challenged by others. </p>
+
+    <p>This blog is an experiment. Every now and then, when I walk my dog, I record my thoughts and ideas - challenges I've faced at work, insights from my daily research in tech and other fields - and then use AI to challenge them deeply. The result becomes a blog post.</p>
+
+    <p>I truly believe that transparency is key to intellectual honesty. This blog is here to bring my ideas to light, to be challenged, and to evolve. I hope you find value in this journey of thought and exploration.</p>
+
+    <p><em>Benny</em></p>
+
+    
   </div>
 
   <!-- Tag Filter Section -->
