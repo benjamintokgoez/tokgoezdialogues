@@ -87,6 +87,120 @@ layout: default
     {{ content }}
   </div>
 
+  {%- if page.references or page.links_used or page.books or page.studies -%}
+    <div class="transparency-section">
+      <button class="transparency-toggle" onclick="toggleTransparency()">
+        <span class="toggle-icon">▶</span>
+        <span class="transparency-title">
+          <span class="transparency-icon">🔍</span>
+          Sources & References
+        </span>
+      </button>
+      
+      <div class="transparency-content" id="transparency-content" style="display: none;">
+        {%- if page.links_used -%}
+          <div class="transparency-subsection">
+            <h4>🔗 Links Used in Conversation</h4>
+            <ul class="transparency-list">
+              {%- for link in page.links_used -%}
+                <li>
+                  <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title | default: link.url }}</a>
+                  {%- if link.description -%}
+                    <span class="link-description"> - {{ link.description }}</span>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+        
+        {%- if page.references -%}
+          <div class="transparency-subsection">
+            <h4>📖 Important References</h4>
+            <ul class="transparency-list">
+              {%- for ref in page.references -%}
+                <li>
+                  {%- if ref.url -%}
+                    <a href="{{ ref.url }}" target="_blank" rel="noopener">{{ ref.title }}</a>
+                  {%- else -%}
+                    <strong>{{ ref.title }}</strong>
+                  {%- endif -%}
+                  {%- if ref.author -%}
+                    <span class="ref-author"> by {{ ref.author }}</span>
+                  {%- endif -%}
+                  {%- if ref.description -%}
+                    <span class="ref-description"> - {{ ref.description }}</span>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+        
+        {%- if page.books -%}
+          <div class="transparency-subsection">
+            <h4>📚 Books & Publications</h4>
+            <ul class="transparency-list">
+              {%- for book in page.books -%}
+                <li>
+                  {%- if book.url -%}
+                    <a href="{{ book.url }}" target="_blank" rel="noopener">{{ book.title }}</a>
+                  {%- else -%}
+                    <strong>{{ book.title }}</strong>
+                  {%- endif -%}
+                  {%- if book.author -%}
+                    <span class="book-author"> by {{ book.author }}</span>
+                  {%- endif -%}
+                  {%- if book.year -%}
+                    <span class="book-year"> ({{ book.year }})</span>
+                  {%- endif -%}
+                  {%- if book.isbn -%}
+                    <span class="book-isbn"> - ISBN: {{ book.isbn }}</span>
+                  {%- endif -%}
+                  {%- if book.description -%}
+                    <span class="book-description"> - {{ book.description }}</span>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+        
+        {%- if page.studies -%}
+          <div class="transparency-subsection">
+            <h4>🔬 Studies & Research</h4>
+            <ul class="transparency-list">
+              {%- for study in page.studies -%}
+                <li>
+                  {%- if study.url -%}
+                    <a href="{{ study.url }}" target="_blank" rel="noopener">{{ study.title }}</a>
+                  {%- else -%}
+                    <strong>{{ study.title }}</strong>
+                  {%- endif -%}
+                  {%- if study.authors -%}
+                    <span class="study-authors"> by {{ study.authors }}</span>
+                  {%- endif -%}
+                  {%- if study.journal -%}
+                    <span class="study-journal"> - {{ study.journal }}</span>
+                  {%- endif -%}
+                  {%- if study.year -%}
+                    <span class="study-year"> ({{ study.year }})</span>
+                  {%- endif -%}
+                  {%- if study.doi -%}
+                    <span class="study-doi"> - DOI: <a href="https://doi.org/{{ study.doi }}" target="_blank" rel="noopener">{{ study.doi }}</a></span>
+                  {%- endif -%}
+                  {%- if study.description -%}
+                    <span class="study-description"> - {{ study.description }}</span>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+
   {%- if site.disqus.shortname -%}
     {%- include disqus_comments.html -%}
   {%- endif -%}

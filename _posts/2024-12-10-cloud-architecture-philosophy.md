@@ -3,7 +3,7 @@ layout: post
 title: "Cloud Architecture and the Philosophy of Distributed Systems"
 date: 2024-12-10 14:20:00 +0000
 tags: [cloud-computing, architecture, distributed-systems, philosophy, technology]
-author: Benjamin Tokgoez
+author: Benjamin Tokgöz
 ---
 
 Working with distributed systems daily, I've come to see them as more than just technical constructs—they're philosophical statements about how we understand complexity, resilience, and cooperation.

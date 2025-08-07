@@ -1,29 +1,10 @@
 ---
 ---
 
-// Custom variables - Dark Theme (default)
-:root {
-  --primary-color: #0d1117;
-  --secondary-color: #21262d;
-  --tertiary-color: #30363d;
-  --accent-color: #58a6ff;
-  --accent-secondary: #7c3aed;
-  --text-primary: #f0f6fc;
-  --text-secondary: #8b949e;
-  --text-muted: #6e7681;
-  --border-color: #30363d;
-  --success-color: #3fb950;
-  --warning-color: #d29922;
-  --error-color: #f85149;
-  --terminal-green: #00ff00;
-  --code-bg: #161b22;
-  --quote-bg: #262c36;
-  --shadow-color: rgba(0, 0, 0, 0.3);
-  --overlay-bg: rgba(13, 17, 23, 0.8);
-}
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Source+Code+Pro:wght@400;500&display=swap");
 
-// Light Theme
-[data-theme="light"] {
+// Custom variables - Light Theme (default)
+:root {
   --primary-color: #ffffff;
   --secondary-color: #f6f8fa;
   --tertiary-color: #e1e4e8;
@@ -43,35 +24,81 @@
   --overlay-bg: rgba(255, 255, 255, 0.9);
 }
 
+// Dark Theme
+[data-theme="dark"] {
+  --primary-color: #0d1117;
+  --secondary-color: #21262d;
+  --tertiary-color: #30363d;
+  --accent-color: #58a6ff;
+  --accent-secondary: #7c3aed;
+  --text-primary: #f0f6fc;
+  --text-secondary: #8b949e;
+  --text-muted: #6e7681;
+  --border-color: #30363d;
+  --success-color: #3fb950;
+  --warning-color: #d29922;
+  --error-color: #f85149;
+  --terminal-green: #00ff00;
+  --code-bg: #161b22;
+  --quote-bg: #262c36;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --overlay-bg: rgba(13, 17, 23, 0.8);
+}
+
 // Typography - More intellectual feel
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: 'Crimson Text', 'Georgia', 'Times New Roman', serif;
   background-color: var(--primary-color);
   color: var(--text-primary);
-  line-height: 1.6;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  letter-spacing: -0.01em;
+  line-height: 1.8;
+  font-size: 18px;
+  letter-spacing: 0.01em;
 }
 
 code, pre {
-  font-family: 'JetBrains Mono', 'SF Mono', Monaco, Inconsolata, monospace;
+  font-family: 'Source Code Pro', 'SF Mono', Monaco, Inconsolata, monospace;
+  font-weight: 400;
 }
 
 // Intellectual typography enhancements
 h1, h2, h3, h4, h5, h6 {
+  font-family: 'Crimson Text', Georgia, serif;
   font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.3;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  margin-top: 2.5rem;
+  margin-bottom: 1.2rem;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
+h1 { 
+  font-size: 2.8rem; 
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+h2 { 
+  font-size: 2.2rem; 
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+h3 { 
+  font-size: 1.8rem; 
+  font-style: italic;
+}
+h4 { 
+  font-size: 1.4rem; 
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
 
 // Enhanced readability
 p {
-  max-width: 70ch;
-  line-height: 1.7;
+  max-width: 75ch;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+  hyphens: auto;
 }
 
 // Theme Toggle Button
@@ -163,14 +190,15 @@ p {
 .site-title {
   color: var(--text-primary) !important;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 700;
+  font-family: 'Crimson Text', Georgia, serif;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   float: left;
-  font-size: 26px;
+  font-size: 32px;
   line-height: 54px;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   margin-bottom: 0;
   
   &:hover {
@@ -178,17 +206,18 @@ p {
   }
 
   @media screen and (max-width: 600px) {
-    font-size: 20px;
+    font-size: 24px;
   }
 }
 
 .terminal-prompt {
   color: var(--terminal-green);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.9em;
+  font-family: 'Source Code Pro', 'JetBrains Mono', monospace;
+  font-size: 0.6em;
+  font-weight: 400;
 
   @media screen and (max-width: 600px) {
-    font-size: 0.7em;
+    font-size: 0.5em;
   }
 }
 
@@ -307,7 +336,7 @@ p {
   }
   
   h2 {
-    color: var(--accent-color);
+    color: var(--text-primary);
     margin-bottom: 1.5rem;
     font-weight: 700;
     font-size: 2.2rem;
@@ -367,6 +396,7 @@ p {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  align-items: center;
 }
 
 .tag-btn {
@@ -388,6 +418,43 @@ p {
     background-color: var(--accent-color);
     color: var(--primary-color);
     border-color: var(--accent-color);
+  }
+}
+
+.filter-toggle-btn {
+  background: transparent;
+  border: 1px dashed var(--border-color);
+  color: var(--text-muted);
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 0.3rem;
+  
+  &:hover {
+    background: var(--tertiary-color);
+    color: var(--text-secondary);
+    border-color: var(--accent-color);
+    border-style: solid;
+  }
+  
+  &:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+  
+  .filter-toggle-text {
+    font-weight: 500;
+  }
+}
+
+.filter-tags-hidden {
+  display: inline;
+  
+  .tag-btn {
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 }
 
@@ -476,6 +543,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
+  align-items: center;
 }
 
 .tag {
@@ -492,6 +560,42 @@ p {
     background: var(--accent-color);
     color: var(--primary-color);
     transform: translateY(-1px);
+  }
+}
+
+.tag-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 0.2rem;
+  
+  &:hover {
+    background: var(--tertiary-color);
+    color: var(--text-secondary);
+    border-color: var(--accent-color);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+  
+  .toggle-text {
+    font-weight: 500;
+  }
+}
+
+.tags-hidden {
+  display: inline;
+  
+  .tag {
+    margin-right: 0.4rem;
+    margin-bottom: 0.4rem;
   }
 }
 
@@ -668,6 +772,148 @@ p {
   }
 }
 
+/* Transparency Section Styling */
+.transparency-section {
+  margin: 3rem 0 2rem 0;
+  border-top: 2px solid var(--border-color);
+  padding-top: 2rem;
+}
+
+.transparency-toggle {
+  background: var(--tertiary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  
+  &:hover {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    transform: translateY(-1px);
+  }
+  
+  &:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+  
+  .toggle-icon {
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .transparency-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .transparency-icon {
+    font-size: 1.1rem;
+  }
+}
+
+.transparency-content {
+  margin-top: 1.5rem;
+  animation: fadeIn 0.3s ease;
+  background: var(--code-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.transparency-subsection {
+  margin-bottom: 2rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  h4 {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+.transparency-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+  li {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: var(--primary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    line-height: 1.6;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 500;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+      
+      &[target="_blank"]:after {
+        content: " ↗";
+        font-size: 0.8em;
+        color: var(--text-muted);
+      }
+    }
+    
+    .link-description,
+    .ref-description,
+    .book-description,
+    .study-description {
+      color: var(--text-secondary);
+      font-style: italic;
+    }
+    
+    .ref-author,
+    .book-author,
+    .study-authors {
+      color: var(--text-muted);
+      font-size: 0.9em;
+    }
+    
+    .book-year,
+    .study-year {
+      color: var(--text-muted);
+      font-size: 0.9em;
+    }
+    
+    .book-isbn,
+    .study-doi,
+    .study-journal {
+      color: var(--text-muted);
+      font-size: 0.85em;
+    }
+  }
+}
+
 .post-link {
   color: var(--text-primary);
   text-decoration: none;
@@ -710,16 +956,45 @@ p {
   
   .post-title {
     color: var(--text-primary);
+    font-family: 'Crimson Text', Georgia, serif;
     font-weight: 700;
-    margin-bottom: 1.5rem;
-    font-size: 2.5rem;
-    line-height: 1.2;
-    letter-spacing: -0.03em;
-    max-width: 20ch;
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 25ch;
+    text-align: left;
+    
+    &::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-color), transparent);
+      margin-top: 1rem;
+    }
   }
   
   .post-content {
-    max-width: 70ch;
+    max-width: 75ch;
+    margin: 0 auto;
+    
+    // Academic-style first paragraph
+    > p:first-of-type {
+      font-size: 1.15rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      
+      &::first-letter {
+        font-size: 4rem;
+        line-height: 1;
+        float: left;
+        margin: 0.1rem 0.5rem 0 0;
+        font-family: 'Crimson Text', Georgia, serif;
+        font-weight: 700;
+        color: var(--accent-color);
+      }
+    }
     
     h1, h2, h3, h4, h5, h6 {
       color: var(--text-primary);
@@ -759,21 +1034,37 @@ p {
     blockquote {
       background: linear-gradient(135deg, var(--quote-bg), var(--secondary-color));
       border-left: 4px solid var(--accent-color);
-      padding: 1.5rem 2rem;
-      margin: 2rem 0;
+      padding: 2rem 2.5rem;
+      margin: 2.5rem 0;
       border-radius: 0 8px 8px 0;
       font-style: italic;
       position: relative;
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: 1.1rem;
+      line-height: 1.7;
       
       &::before {
         content: '"';
-        font-size: 3rem;
+        font-size: 4rem;
         color: var(--accent-color);
-        opacity: 0.3;
+        opacity: 0.2;
         position: absolute;
-        top: 0.5rem;
+        top: 0.2rem;
         left: 0.5rem;
-        font-family: serif;
+        font-family: 'Crimson Text', serif;
+        font-weight: 700;
+      }
+      
+      &::after {
+        content: '"';
+        font-size: 4rem;
+        color: var(--accent-color);
+        opacity: 0.2;
+        position: absolute;
+        bottom: -1rem;
+        right: 0.5rem;
+        font-family: 'Crimson Text', serif;
+        font-weight: 700;
       }
       
       p:last-child {
@@ -797,6 +1088,41 @@ p {
     strong:contains("Critical AI:") {
       color: var(--accent-color);
       font-weight: 600;
+    }
+    
+    // Academic-style lists
+    ul, ol {
+      margin: 1.5rem 0;
+      padding-left: 2rem;
+    }
+    
+    ul li {
+      margin-bottom: 0.8rem;
+      
+      &::marker {
+        color: var(--accent-color);
+        font-weight: 600;
+      }
+    }
+    
+    ol li {
+      margin-bottom: 0.8rem;
+      
+      &::marker {
+        color: var(--accent-color);
+        font-weight: 600;
+      }
+    }
+    
+    // Scholarly emphasis styles
+    em {
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+    
+    strong {
+      font-weight: 600;
+      color: var(--text-primary);
     }
   }
 }
@@ -987,6 +1313,14 @@ code {
       flex-shrink: 0;
     }
     
+    /* Custom Bluesky icon styling */
+    .bluesky-icon {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+    
     span {
       white-space: nowrap;
     }
@@ -997,6 +1331,16 @@ code {
     padding-top: 1.5rem;
     border-top: 1px solid var(--border-color);
     text-align: center;
+  }
+  
+  // Feynman quote styling
+  .quote-attribution {
+    font-size: 0.85rem !important;
+    color: var(--text-muted) !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0 !important;
+    font-style: normal !important;
+    text-align: right;
   }
   
   .terminal-style {
@@ -1318,6 +1662,17 @@ code {
     font-size: 0.8em;
   }
   
+  .filter-toggle-btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+    margin-left: 0.2rem;
+  }
+  
+  .filter-tags-hidden .tag-btn {
+    margin-right: 0.3rem;
+    margin-bottom: 0.3rem;
+  }
+  
   // AI Transparency mobile styles
   .ai-transparency {
     padding: 1rem;
@@ -1343,6 +1698,22 @@ code {
   .ai-prompt-content pre {
     padding: 0.75rem;
     font-size: 0.8rem;
+  }
+  
+  // Tag toggle mobile styles
+  .post-tags {
+    gap: 0.3rem;
+  }
+  
+  .tag-toggle-btn {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.7rem;
+    margin-left: 0.1rem;
+  }
+  
+  .tags-hidden .tag {
+    margin-right: 0.3rem;
+    margin-bottom: 0.3rem;
   }
 }
 
@@ -1374,4 +1745,96 @@ textarea:focus,
 a:focus {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
+}
+
+// About page styling
+.about-page {
+  max-width: 75ch;
+  margin: 0 auto;
+}
+
+.about-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+  
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+}
+
+.profile-images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent-color);
+  box-shadow: 0 4px 12px var(--shadow-color);
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+  
+  @media screen and (max-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.dog-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--text-muted);
+  box-shadow: 0 2px 8px var(--shadow-color);
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
+  
+  @media screen and (max-width: 768px) {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+.about-intro {
+  flex-grow: 1;
+  
+  h1 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    
+    @media screen and (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+  
+  .tagline {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 0;
+    font-family: 'Crimson Text', Georgia, serif;
+    
+    @media screen and (max-width: 768px) {
+      font-size: 1.1rem;
+    }
+  }
 }

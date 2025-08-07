@@ -4,37 +4,19 @@
   <div class="wrapper">
 
     <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">
-            {%- if site.author.name -%}
-              {{ site.author.name | escape }}
-            {%- elsif site.author -%}
-              {{ site.author | escape }}
-            {%- else -%}
-              {{ site.title | escape }}
-            {%- endif -%}
-          </li>
-          {%- if site.author.email -%}
-            <li><a class="u-email" href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></li>
-          {%- elsif site.email -%}
-            <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-          {%- endif -%}
-        </ul>
-      </div>
-
       <div class="footer-col footer-col-2">
         {%- include social.html -%}
       </div>
 
       <div class="footer-col footer-col-3">
-        <p>{{- site.description | escape -}}</p>
+        <p><em>"Nobody ever figures out what life is all about, and it doesn't matter. Explore the world. Nearly everything is really interesting if you go into it deeply enough."</em></p>
+        <p class="quote-attribution">— Richard Feynman</p>
       </div>
     </div>
 
     <div class="footer-bottom">
       <p class="terminal-style">
-        <span class="prompt">root@tokgoez-dialogues:~#</span> 
+        <span class="prompt">tokgoez@localhost:~/notes$</span> 
         <span class="command">echo "{{ 'now' | date: '%Y' }} - Powered by Jekyll & GenAI"</span>
       </p>
     </div>
@@ -49,12 +31,12 @@
   const themeToggle = document.getElementById('theme-toggle');
   const body = document.body;
   
-  // Check for saved theme preference or default to dark
-  const currentTheme = localStorage.getItem('theme') || 'dark';
+  // Check for saved theme preference or default to light
+  const currentTheme = localStorage.getItem('theme') || 'light';
   
   // Apply the current theme
-  if (currentTheme === 'light') {
-    body.setAttribute('data-theme', 'light');
+  if (currentTheme === 'dark') {
+    body.setAttribute('data-theme', 'dark');
   }
   
   // Theme toggle click handler
@@ -62,12 +44,12 @@
     themeToggle.addEventListener('click', function() {
       const currentTheme = body.getAttribute('data-theme');
       
-      if (currentTheme === 'light') {
+      if (currentTheme === 'dark') {
         body.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        body.setAttribute('data-theme', 'light');
         localStorage.setItem('theme', 'light');
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
       }
     });
   }
@@ -145,6 +127,23 @@ if (document.getElementById('search-input')) {
 function toggleAIPrompts() {
   const content = document.getElementById('ai-prompts-content');
   const toggle = document.querySelector('.ai-prompts-toggle');
+  const icon = toggle.querySelector('.toggle-icon');
+  
+  if (content.style.display === 'none' || content.style.display === '') {
+    content.style.display = 'block';
+    icon.textContent = '▼';
+    toggle.setAttribute('aria-expanded', 'true');
+  } else {
+    content.style.display = 'none';
+    icon.textContent = '▶';
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+}
+
+// Transparency Section Toggle Function
+function toggleTransparency() {
+  const content = document.getElementById('transparency-content');
+  const toggle = document.querySelector('.transparency-toggle');
   const icon = toggle.querySelector('.toggle-icon');
   
   if (content.style.display === 'none' || content.style.display === '') {

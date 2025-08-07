@@ -2,8 +2,8 @@
 layout: post
 title: "Why I Choose Vim in the Age of AI-Powered IDEs"
 date: 2024-12-01 16:45:00 +0000
-tags: [tools, vim, productivity, philosophy, linux, text-editors]
-author: Benjamin Tokgoez
+tags: [tools, vim, productivity, philosophy, linux, text-editors, development, workflow, minimalism]
+author: Benjamin Tokgöz
 ---
 
 In an era of AI-powered IDEs, IntelliSense, and Copilot, my choice to use Vim as my primary editor might seem anachronistic. Colleagues often ask why I'd choose a 30-year-old text editor when modern tools offer so much assistance. The answer lies not in nostalgia, but in philosophy.

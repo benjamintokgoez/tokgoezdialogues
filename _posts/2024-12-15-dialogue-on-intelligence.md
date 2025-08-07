@@ -2,8 +2,8 @@
 layout: post
 title: "A Dialogue on the Nature of Intelligence"
 date: 2024-12-15 10:30:00 +0000
-tags: [AI, philosophy, consciousness, dialogue]
-author: Benjamin Tokgoez
+tags: [AI, philosophy, consciousness, dialogue, cognitive-science, machine-learning, ethics, technology]
+author: Benjamin Tokgöz
 ---
 
 *This conversation emerged from a late-night session exploring the boundaries between artificial and human intelligence. The AI interlocutor challenged many of my assumptions about consciousness and cognition.*

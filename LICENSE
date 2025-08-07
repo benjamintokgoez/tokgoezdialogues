@@ -1,0 +1,91 @@
+# License
+
+This repository contains two types of intellectual property with different licensing terms:
+
+## 1. Blog Content License
+
+**Applies to**: All blog posts, articles, dialogues, and written content in the `_posts/` directory and related content files.
+
+**Copyright**: © 2025 Benjamin Tokgöz
+
+### Terms for Blog Content
+
+The written content of Tokgöz Dialogues is licensed under a **Creative Commons Attribution 4.0 International License (CC BY 4.0)**.
+
+**You are free to**:
+- **Share** — copy and redistribute the material in any medium or format
+- **Adapt** — remix, transform, and build upon the material for any purpose, even commercially
+- **Quote** — use excerpts and quotations in your own work
+- **Paraphrase** — explain concepts in your own words based on the content
+
+**Under the following terms**:
+- **Attribution** — You must give appropriate credit to Benjamin Tokgöz, provide a link to the original source, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+
+**Attribution Examples**:
+- For quotes: "As Benjamin Tokgöz writes in 'Tokgöz Dialogues' (https://tokgoez-dialogues.com)..."
+- For paraphrasing: "Based on concepts discussed by Benjamin Tokgöz in 'Tokgöz Dialogues'..."
+- For substantial adaptations: "Adapted from Benjamin Tokgöz's work at Tokgöz Dialogues (https://tokgoez-dialogues.com)"
+
+For more details about CC BY 4.0, see: https://creativecommons.org/licenses/by/4.0/
+
+---
+
+## 2. Software License
+
+**Applies to**: All source code, Jekyll templates, CSS, JavaScript, configuration files, and technical implementation.
+
+**MIT License**
+
+Copyright (c) 2025 Benjamin Tokgöz
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## 3. Third-Party Components
+
+This project may include third-party components with their own licensing terms:
+
+- **Jekyll**: MIT License
+- **Minima Theme**: MIT License  
+- **Fonts**: 
+  - Crimson Text: SIL Open Font License
+  - Source Code Pro: SIL Open Font License
+- **Icons and External Resources**: As specified in their respective sources
+
+---
+
+## 4. AI Transparency
+
+In the spirit of transparency that guides this blog:
+
+- AI assistance was used in developing both the content and code
+- All AI interactions are disclosed in blog posts where applicable
+- The AI transparency features in this codebase are designed to maintain openness about AI involvement
+
+---
+
+## Questions?
+
+If you have questions about licensing or attribution requirements, please reach out via the contact methods listed on the blog.
+
+**Summary**: 
+- **Blog content**: Use freely with attribution (CC BY 4.0)
+- **Source code**: Use freely, no attribution required for code use (MIT)
+- **Both**: Respect the open source and open content spirit of the project

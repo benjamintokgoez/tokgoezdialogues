@@ -3,7 +3,7 @@ layout: post
 title: "On Reading 'The Pragmatic Programmer' in 2024"
 date: 2024-11-28 09:15:00 +0000
 tags: [books, programming, pragmatism, software-development, reflection]
-author: Benjamin Tokgoez
+author: Benjamin Tokgöz
 ---
 
 I recently re-read "The Pragmatic Programmer" by Dave Thomas and Andy Hunt—a book that shaped my early career and continues to influence my thinking as a Solution Architect. Reading it again in 2024, with the context of AI, cloud computing, and modern software development practices, has been revelatory.
