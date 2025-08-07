@@ -15,8 +15,7 @@
 
 # Site settings
 title: "Tokgöz Dialogues"
-description: >-
-  Conversations with critical AI and reflections on technology, philosophy and more.
+description: "Conversations with critical AI and reflections on technology, philosophy and more."
 baseurl: ""
 url: "https://tokgoezdialogues.com"
 

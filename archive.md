@@ -3,31 +3,6 @@ layout: default
 title: Archive
 permalink: /archive/
 ---
-{%- comment -%}
-/**
- * Tokgöz Dialogues - Archive Page
- * 
- * @author Benjamin Tokgöz <https://github.com/benjamintokgoez>
- * @created 2025-08-07
- * @updated 2025-08-07
- * @description Archive page showing all blog posts organized by date
- * @license MIT
- */
-{%- endcomment -%}ult
-title: Archive
-permalink: /archive/
----
-<!--
-/**
- * Tokgöz Dialogues - Archive Page
- * 
- * @author Benjamin Tokgöz <https://github.com/benjamintokgoez>
- * @created 2025-08-07
- * @updated 2025-08-07
- * @description Blog archive with search and filtering functionality
- * @license MIT
- */
--->
 
 # Archive
 
