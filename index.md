@@ -9,9 +9,9 @@ layout: default
 
   <div class="intro-section">
     <h2>Tokgöz Dialogues</h2>
-    <p class="intro-text">
-      Space for the intro.
-    </p>
+    <blockquote class="hero-quote">
+      Come and join me for a walk with my dog.
+    </blockquote>
    
     <div class="about-me">
       <p>
