@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "GPT-5: How to use it and the suprising 4o desire"
+title: "GPT-5: How to use it and the surprising 4o desire"
 date: 2025-08-14 00:00:00 +0000
 tags: [AI, GPT-5, prompting, agents, productivity, philosophy, ethics, technology]
 author: Benjamin Tokgöz
