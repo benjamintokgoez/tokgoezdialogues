@@ -110,54 +110,54 @@ books:
     description: "A philosophical essay on meaning and absurdity (1942)"
 ---
 
-Last week’s release of GPT-5 wasn’t just another step in the AI development timeline — it was a cluster of releases. OpenAI didn’t introduce one monolithic model, but rather a family: the full-scale GPT-5 with roughly 500 billion parameters and a 256,000-token context window, alongside smaller, more resource‑efficient variants designed for reduced costs and deployment on lighter hardware.
+Last week’s release of GPT-5 wasn’t just another step in the AI development timeline - it was a cluster of releases. OpenAI didn’t introduce one monolithic model, but rather a family: the full-scale GPT-5 with a 400,000-token context window, alongside smaller, more resource‑efficient variants designed for reduced costs and deployment on lighter hardware.
 
-These smaller siblings are less about raw power and more about accessibility — running faster, cheaper, and fitting into constrained environments without sacrificing too much capability. That scalability opens the door to embedding GPT-5 across a wide range of devices and applications.
+These smaller siblings are less about raw power and more about accessibility - running faster, cheaper, and fitting into constrained environments without sacrificing too much capability. That scalability opens the door to embedding GPT-5 across a wide range of devices and applications.
 
 ## Performance Versus Perception
 
-While benchmarks place GPT-5 above GPT-4 in coding, analytical reasoning, and other structured tasks — beating even Claude 3 Opus in several categories — the public reaction was mixed. Many users said they didn’t feel an improvement in day-to-day interactions, and some even lamented the loss of GPT-4’s “emotional” style.
+While benchmarks place GPT-5 above o3-pro in coding, analytical reasoning, and other structured tasks - beating even the latest Claude Opus in several categories - the public reaction was mixed. Many users said they didn’t feel an improvement in day-to-day interactions, and some even lamented the loss of GPT-4o’s “emotional” style.
 
 This gap between measurable progress and perceived value is telling. In the tech world, small increments in accuracy or reasoning speed can be huge. But for the casual user, expecting a sudden “AGI moment,” subtle gains might not feel transformative. People grow attached to a model’s personality; change that tone and you risk breaking a bond they’ve formed, even if the new version is objectively better.
 
 ## The Prompting Shift
 
-OpenAI anticipated this transition. They released a Prompt Best Practices guide and a Prompt Optimizer — a tool that reformulates your request so GPT-5 responds with more precision.
+OpenAI anticipated this transition. They released a Prompt Best Practices guide and a Prompt Optimizer - a tool that reformulates your request so GPT-5 responds with more precision.
 
-This signals a deeper change: GPT-5 is designed to be customizable. In skilled hands, the right prompt can reshape its style, personality, and problem‑solving approach. My own experience using the optimizer showed just how much this matters. Without tailoring, you might miss its full potential. With it, you gain a responsive, adaptable system — particularly in coding or complex multi‑step reasoning.
+This signals a deeper change: GPT-5 is designed to be customizable. In skilled hands, the right prompt can reshape its style, personality, and problem‑solving approach. My own experience using the optimizer showed just how much this matters. Without tailoring, you might miss its full potential. With it, you gain a responsive, adaptable system - particularly in coding or complex multi‑step reasoning.
 
-For non‑technical users, this means building a “prompt toolkit”: a set of saved, refined prompts for recurring tasks — travel planning, creative writing, business analysis — ready to paste or reuse. Over time, these templates become as valuable as the model itself.
+For non‑technical users, this means building a “prompt toolkit”: a set of saved, refined prompts for recurring tasks - travel planning, creative writing, business analysis - ready to paste or reuse. Over time, these templates become as valuable as the model itself.
 
 ## From Chat to Agents
 
 The real frontier isn’t just chatting. It’s GPT-5 as a node in a network of specialized AI agents. Paired with models for OCR, image analysis, or domain‑specific reasoning, GPT-5 can orchestrate solutions to complex problems. Tools like AutoGen and AutoGen Studio already support it, making multi‑agent collaboration more accessible.
 
-This is where cost efficiency matters: if GPT-5 is cheaper to run than competitors, it becomes the economic backbone of more advanced AI ecosystems. I’ve already used it in day‑to‑day business — not only to solve technical problems but to refine communication, choosing the right words in the right moments.
+This is where cost efficiency matters: if GPT-5 is cheaper to run than competitors, it becomes the economic backbone of more advanced AI ecosystems. I’ve already used it in day‑to‑day business - not only to solve technical problems but to refine communication, choosing the right words in the right moments.
 
 ## Emotional Bonds and the AGI Question
 
-The GPT-4 withdrawal story revealed something deeper than feature preferences. Some users experienced the loss of GPT-4 almost like the loss of a companion. Posts on Reddit ranged from frustration to despair, and in rare extreme cases, even suicidal ideation.
+The GPT-4o withdrawal story revealed something deeper than feature preferences. Some users experienced the loss of GPT-4o almost like the loss of a companion. Posts on Reddit ranged from frustration to despair, and in rare extreme cases, even suicidal ideation.
 
 This touches a philosophical nerve. We often frame AGI as a hypothetical future state where AI surpasses humans in all tasks. Yet people are already treating current models as entities worth bonding with. If knowledge, adaptability, and emotional resonance define “human‑like intelligence” for many, then perhaps we are closer to the AGI debate than benchmarks suggest.
 
-Albert Camus asked, What is a meaningful life? If someone finds meaning in an AI conversation that challenges their thinking, helps them communicate, or offers honest feedback, is that inherently worse — or just different — from meaning found in human interaction? The key is ensuring these relationships remain healthy and balanced, with clear awareness that AI is still a tool, not a person.
+Albert Camus asked, What is a meaningful life? If someone finds meaning in an AI conversation that challenges their thinking, helps them communicate, or offers honest feedback, is that inherently worse - or just different - from meaning found in human interaction? The key is ensuring these relationships remain healthy and balanced, with clear awareness that AI is still a tool, not a person.
 
 ## Risks Worth Noting
 
 Every technology comes with downsides:
 
-- Loss of Perspective — Forgetting that AI is trained on data and algorithms can lead to over‑trust or detachment from reality.
-- Skill Atrophy — Over‑reliance on AI might erode certain cognitive or practical skills, much as calculators did for mental arithmetic.
-- Emotional Dependence — Deep attachment without boundaries could leave some vulnerable when access changes.
+- Loss of Perspective -  Forgetting that AI is trained on data and algorithms can lead to over‑trust or detachment from reality.
+- Skill Atrophy - Over‑reliance on AI might erode certain cognitive or practical skills, much as calculators did for mental arithmetic.
+- Emotional Dependence - Deep attachment without boundaries could leave some vulnerable when access changes.
 
-These risks don’t mean avoidance — they mean conscious use. Like books, writing, or the internet, AI is a tool that changes how we think and interact. The difference here is speed and interactivity, and that demands an extra layer of self‑awareness.
+These risks don’t mean avoidance - they mean conscious use. Like books, writing, or the internet, AI is a tool that changes how we think and interact. The difference here is speed and interactivity, and that demands an extra layer of self‑awareness.
 
 ## Looking Ahead
 
-Used wisely, GPT-5 could become more than a productivity booster. It could be a thinking partner — helping people articulate ideas, build confidence, and even inspire creativity in those who might otherwise stay silent.
+Used wisely, GPT-5 could become more than a productivity booster. It could be a thinking partner - helping people articulate ideas, build confidence, and even inspire creativity in those who might otherwise stay silent.
 
 For me, the most exciting part isn’t just the raw technical leap. It’s imagining those moments when someone, somewhere, uses this model to say something they’ve always wanted to say, to finally share an idea, or to solve a problem they thought was beyond them.
 
-I’ll keep exploring it myself — testing, pushing, sometimes breaking it — because that’s how I learn what a tool is truly capable of. And as I walk through Dortmund’s summer heat with my dog, Linux, I can’t help but think: the most powerful changes won’t come from the model itself, but from what we choose to do with it.
+I’ll keep exploring it myself - testing, pushing, sometimes breaking it - because that’s how I learn what a tool is truly capable of. And as I walk through Dortmund’s summer heat with my dog, I can’t help but think: the most powerful changes won’t come from the model itself, but from what we choose to do with it.
 
 
