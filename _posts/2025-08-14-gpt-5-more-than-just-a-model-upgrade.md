@@ -96,7 +96,7 @@ ai_prompts:
 # Sources & References (using toggle system)
 links_used:
   - title: "OpenAI Prompt Best Practices Guide"
-    url: "https://platform.openai.com/docs/guides/prompting"
+    url: "https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide"
     description: "Official guidance on writing effective prompts"
   - title: "AutoGen & AutoGen Studio"
     url: "https://microsoft.github.io/autogen"
