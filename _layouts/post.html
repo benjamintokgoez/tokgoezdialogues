@@ -1,234 +1,93 @@
 ---
 layout: default
 ---
-{%- comment -%}
-/**
- * Tokgöz Dialogues - Post Layout Template
- * 
- * @author Benjamin Tokgöz <https://github.com/benjamintokgoez>
- * @created 2025-08-07
- * @updated 2025-08-07
- * @description Blog post layout with AI transparency and sources toggle
- * @license MIT
- */
-{%- endcomment -%}
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+{%- assign words = content | number_of_words -%}
+{%- assign rt = words | divided_by: 200 | plus: 1 -%}
 
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-    <div class="post-meta">
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        {{ page.date | date: date_format }}
-      </time>
-      {%- if page.modified_date -%}
-        ~ 
-        {%- assign mdate = page.modified_date | date_to_xmlschema -%}
-        <time class="dt-modified" datetime="{{ mdate }}" itemprop="dateModified">
-          {{ mdate | date: date_format }}
-        </time>
-      {%- endif -%}
-      {%- if page.author -%}
-        • {% for author in page.author %}
-          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
-            {%- if forloop.last == false %}, {% endif -%}
-        {% endfor %}
-      {%- endif -%}
+{%- comment -%} Output is the body; an optional raw transcript can follow a marker. {%- endcomment -%}
+{%- assign split = content | split: '<!-- TRANSCRIPT -->' -%}
+{%- assign output_html = split[0] -%}
+{%- assign transcript_html = split[1] | strip -%}
+{%- assign has_prompt = false -%}{%- if page.ai_prompts and page.ai_prompts.size > 0 -%}{%- assign has_prompt = true -%}{%- endif -%}
+{%- assign has_walk = false -%}{%- if transcript_html and transcript_html != '' -%}{%- assign has_walk = true -%}{%- endif -%}
+{%- assign has_sources = false -%}{%- if page.books.size > 0 or page.links_used.size > 0 -%}{%- assign has_sources = true -%}{%- endif -%}
+
+<article data-article>
+  <header class="post-head">
+    <p class="cmdline"><span class="prompt">$</span> <span class="cmd">cat posts/{{ page.slug }}.md</span></p>
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+    <div class="post-sub">
+      <span><span class="k">date</span> <b>{{ page.date | date: "%Y-%m-%d" }}</b></span>
+      <span><span class="k">read</span> <b>{{ rt }} min</b></span>
+      {%- if page.author -%}<span><span class="k">author</span> <b>{{ page.author | escape }}</b></span>{%- endif -%}
+      {%- if page.tags.size > 0 -%}<span><span class="k">tags</span> <b>{{ page.tags | join: ', ' | escape }}</b></span>{%- endif -%}
     </div>
-    
-    {%- if page.tags.size > 0 -%}
-      <div class="post-tags">
-        {%- for tag in page.tags -%}
-          <span class="tag">{{ tag }}</span>
-        {%- endfor -%}
-      </div>
-    {%- endif -%}
-    
-    {%- if page.ai_dialogue_model or page.ai_generation_model -%}
-      <div class="ai-transparency">
-        <div class="ai-transparency-header">
-          <span class="ai-icon">🤖</span>
-          <span class="ai-transparency-title">AI Transparency</span>
-        </div>
-        
-        <div class="ai-models">
-          {%- if page.ai_dialogue_model -%}
-            <div class="ai-model-info">
-              <strong>Dialogue Model:</strong> {{ page.ai_dialogue_model }}
-            </div>
-          {%- endif -%}
-          
-          {%- if page.ai_generation_model -%}
-            <div class="ai-model-info">
-              <strong>Generation Model:</strong> {{ page.ai_generation_model }}
-            </div>
-          {%- endif -%}
-        </div>
-        
-        {%- if page.ai_prompts -%}
-          <div class="ai-prompts-section">
-            <button class="ai-prompts-toggle" onclick="toggleAIPrompts()">
-              <span class="toggle-icon">▶</span>
-              View Prompts Used
-            </button>
-            
-            <div class="ai-prompts-content" id="ai-prompts-content" style="display: none;">
-              {%- for prompt in page.ai_prompts -%}
-                <div class="ai-prompt">
-                  <div class="ai-prompt-header">
-                    <strong>{{ prompt.type | default: "Prompt" }}:</strong>
-                    {%- if prompt.model -%}
-                      <span class="prompt-model">({{ prompt.model }})</span>
-                    {%- endif -%}
-                  </div>
-                  <div class="ai-prompt-content">
-                    <pre><code>{{ prompt.content }}</code></pre>
-                  </div>
-                </div>
-              {%- endfor -%}
-            </div>
-          </div>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
   </header>
 
-  <div class="post-content e-content" itemprop="articleBody">
-    {{ content }}
+  {%- comment -%} Provenance manifest {%- endcomment -%}
+  {%- assign show_manifest = false -%}
+  {%- if page.ai_dialogue_model or page.ai_generation_model or page.walk or page.ai -%}{%- assign show_manifest = true -%}{%- endif -%}
+  {%- if show_manifest -%}
+  <div class="manifest" aria-label="How this entry was made">
+    {%- if page.walk.location -%}<div class="row"><span class="key">walk.location</span><span class="val">{{ page.walk.location | escape }}</span></div>{%- endif -%}
+    {%- if page.walk.duration -%}<div class="row"><span class="key">walk.duration</span><span class="val">{{ page.walk.duration | escape }}</span></div>{%- endif -%}
+    {%- if page.ai_dialogue_model -%}<div class="row"><span class="key">ai.dialogue_model</span><span class="val">{{ page.ai_dialogue_model | escape }}</span></div>{%- endif -%}
+    {%- if page.ai_generation_model -%}<div class="row"><span class="key">ai.generation_model</span><span class="val">{{ page.ai_generation_model | escape }}</span></div>{%- endif -%}
+    {%- if page.ai.model -%}<div class="row"><span class="key">ai.model</span><span class="val">{{ page.ai.model | escape }}</span></div>{%- endif -%}
   </div>
+  {%- endif -%}
 
-  {%- if page.references or page.links_used or page.books or page.studies -%}
-    <div class="transparency-section">
-      <button class="transparency-toggle" onclick="toggleTransparency()">
-        <span class="toggle-icon">▶</span>
-        <span class="transparency-title">
-          <span class="transparency-icon">🔍</span>
-          Sources & References
-        </span>
-      </button>
-      
-      <div class="transparency-content" id="transparency-content" style="display: none;">
-        {%- if page.links_used -%}
-          <div class="transparency-subsection">
-            <h4>🔗 Links Used in Conversation</h4>
-            <ul class="transparency-list">
-              {%- for link in page.links_used -%}
-                <li>
-                  <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title | default: link.url }}</a>
-                  {%- if link.description -%}
-                    <span class="link-description"> - {{ link.description }}</span>
-                  {%- endif -%}
-                </li>
-              {%- endfor -%}
-            </ul>
-          </div>
-        {%- endif -%}
-        
-        {%- if page.references -%}
-          <div class="transparency-subsection">
-            <h4>📖 Important References</h4>
-            <ul class="transparency-list">
-              {%- for ref in page.references -%}
-                <li>
-                  {%- if ref.url -%}
-                    <a href="{{ ref.url }}" target="_blank" rel="noopener">{{ ref.title }}</a>
-                  {%- else -%}
-                    <strong>{{ ref.title }}</strong>
-                  {%- endif -%}
-                  {%- if ref.author -%}
-                    <span class="ref-author"> by {{ ref.author }}</span>
-                  {%- endif -%}
-                  {%- if ref.description -%}
-                    <span class="ref-description"> - {{ ref.description }}</span>
-                  {%- endif -%}
-                </li>
-              {%- endfor -%}
-            </ul>
-          </div>
-        {%- endif -%}
-        
-        {%- if page.books -%}
-          <div class="transparency-subsection">
-            <h4>📚 Books & Publications</h4>
-            <ul class="transparency-list">
-              {%- for book in page.books -%}
-                <li>
-                  {%- if book.url -%}
-                    <a href="{{ book.url }}" target="_blank" rel="noopener">{{ book.title }}</a>
-                  {%- else -%}
-                    <strong>{{ book.title }}</strong>
-                  {%- endif -%}
-                  {%- if book.author -%}
-                    <span class="book-author"> by {{ book.author }}</span>
-                  {%- endif -%}
-                  {%- if book.year -%}
-                    <span class="book-year"> ({{ book.year }})</span>
-                  {%- endif -%}
-                  {%- if book.isbn -%}
-                    <span class="book-isbn"> - ISBN: {{ book.isbn }}</span>
-                  {%- endif -%}
-                  {%- if book.description -%}
-                    <span class="book-description"> - {{ book.description }}</span>
-                  {%- endif -%}
-                </li>
-              {%- endfor -%}
-            </ul>
-          </div>
-        {%- endif -%}
-        
-        {%- if page.studies -%}
-          <div class="transparency-subsection">
-            <h4>🔬 Studies & Research</h4>
-            <ul class="transparency-list">
-              {%- for study in page.studies -%}
-                <li>
-                  {%- if study.url -%}
-                    <a href="{{ study.url }}" target="_blank" rel="noopener">{{ study.title }}</a>
-                  {%- else -%}
-                    <strong>{{ study.title }}</strong>
-                  {%- endif -%}
-                  {%- if study.authors -%}
-                    <span class="study-authors"> by {{ study.authors }}</span>
-                  {%- endif -%}
-                  {%- if study.journal -%}
-                    <span class="study-journal"> - {{ study.journal }}</span>
-                  {%- endif -%}
-                  {%- if study.year -%}
-                    <span class="study-year"> ({{ study.year }})</span>
-                  {%- endif -%}
-                  {%- if study.doi -%}
-                    <span class="study-doi"> - DOI: <a href="https://doi.org/{{ study.doi }}" target="_blank" rel="noopener">{{ study.doi }}</a></span>
-                  {%- endif -%}
-                  {%- if study.description -%}
-                    <span class="study-description"> - {{ study.description }}</span>
-                  {%- endif -%}
-                </li>
-              {%- endfor -%}
-            </ul>
-          </div>
-        {%- endif -%}
-      </div>
+  {%- if has_prompt or has_walk -%}
+  <div class="tabs">
+    <div class="tablist" role="tablist" aria-label="Sources for this entry">
+      <button class="tab" data-kind="output" role="tab" id="tab-output" aria-controls="panel-output" aria-selected="true" tabindex="0"><span class="dot">●</span>output.md</button>
+      {%- if has_prompt -%}<button class="tab" data-kind="prompt" role="tab" id="tab-prompt" aria-controls="panel-prompt" aria-selected="false" tabindex="-1"><span class="dot">●</span>prompt.txt</button>{%- endif -%}
+      {%- if has_walk -%}<button class="tab" data-kind="walk" role="tab" id="tab-walk" aria-controls="panel-walk" aria-selected="false" tabindex="-1"><span class="dot">●</span>walk.log</button>{%- endif -%}
     </div>
-  {%- endif -%}
 
-  {%- if site.disqus.shortname -%}
-    {%- include disqus_comments.html -%}
-  {%- endif -%}
+    <section class="tabpanel active" id="panel-output" role="tabpanel" aria-labelledby="tab-output" tabindex="0">
+      <p class="panel-note">The finished piece — written from my point of view.</p>
+      <div class="prose">{{ output_html }}</div>
+      {%- if has_sources -%}{% include sources.html %}{%- endif -%}
+    </section>
 
-  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
-  
-  <div class="post-navigation">
-    {%- if page.previous.url -%}
-      <div class="prev-post">
-        <a href="{{ page.previous.url | relative_url }}">&larr; {{ page.previous.title }}</a>
+    {%- if has_prompt -%}
+    <section class="tabpanel" id="panel-prompt" role="tabpanel" aria-labelledby="tab-prompt" tabindex="0">
+      <p class="panel-note">The exact prompts I used to challenge my thinking and shape this entry. Published verbatim.</p>
+      {%- for p in page.ai_prompts -%}
+      <div class="prompt-block">
+        <div class="prompt-head"><span class="prompt-type">{{ p.type | escape }}</span>{%- if p.model -%}<span class="prompt-model">{{ p.model | escape }}</span>{%- endif -%}</div>
+        <pre><code>{{ p.content | strip | escape }}</code></pre>
       </div>
+      {%- endfor -%}
+    </section>
     {%- endif -%}
-    
-    {%- if page.next.url -%}
-      <div class="next-post">
-        <a href="{{ page.next.url | relative_url }}">{{ page.next.title }} &rarr;</a>
-      </div>
+
+    {%- if has_walk -%}
+    <section class="tabpanel" id="panel-walk" role="tabpanel" aria-labelledby="tab-walk" tabindex="0">
+      <p class="panel-note">The raw conversation from the walk — lightly cleaned for typos only.</p>
+      <div class="prose">{{ transcript_html }}</div>
+    </section>
     {%- endif -%}
   </div>
+  {%- else -%}
+  <div class="prose">{{ output_html }}</div>
+  {%- if has_sources -%}{% include sources.html %}{%- endif -%}
+  {%- endif -%}
+
+  <footer class="post-foot">
+    {%- if page.tags.size > 0 -%}
+    <div class="post-tags">
+      {% for t in page.tags %}<span class="tag" aria-hidden="true">{{ t | escape }}</span>{% endfor %}
+    </div>
+    {%- endif -%}
+    <nav class="pager" aria-label="More entries">
+      {%- if page.previous -%}
+      <a class="prev" href="{{ page.previous.url | relative_url }}"><small>← older</small>{{ page.previous.title | escape }}</a>
+      {%- else -%}<span></span>{%- endif -%}
+      {%- if page.next -%}
+      <a class="next" href="{{ page.next.url | relative_url }}"><small>newer →</small>{{ page.next.title | escape }}</a>
+      {%- endif -%}
+    </nav>
+  </footer>
 </article>

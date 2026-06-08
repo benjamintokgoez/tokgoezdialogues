@@ -1,93 +1,64 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
-# Tokgöz Dialogues - New Post Creation Script
-# 
-# @author Benjamin Tokgöz <https://github.com/benjamintokgoez>
-# @created 2025-08-07
-# @updated 2025-08-07
-# @description Script to create new blog posts with proper formatting
-# @license MIT
+# Tokgöz Dialogues — scaffold a new post.
+# Usage: ./new-post.sh "Post Title" "tag1,tag2,tag3"
 #
-# Script to create a new blog post with proper formatting
-# Usage: ./new-post.sh "Post Title" tag1,tag2,tag3
+set -euo pipefail
 
-set -e
-
-# Check if title is provided
-if [ -z "$1" ]; then
-    echo "Usage: ./new-post.sh \"Post Title\" [tags]"
-    echo "Example: ./new-post.sh \"My New Post\" \"AI,philosophy,dialogue\""
-    exit 1
+if [ -z "${1:-}" ]; then
+  echo "Usage: ./new-post.sh \"Post Title\" [tags]"
+  echo "Example: ./new-post.sh \"Walking and thinking\" \"AI,philosophy\""
+  exit 1
 fi
 
-# Get current date in Jekyll format
-DATE=$(date '+%Y-%m-%d')
-TIME=$(date '+%H:%M:%S +0000')
-DATETIME="$DATE $TIME"
-
-# Convert title to filename-friendly format
 TITLE="$1"
-FILENAME=$(echo "$TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-\|-$//g')
-FILEPATH="_posts/${DATE}-${FILENAME}.md"
+DATE="$(date '+%Y-%m-%d')"
+DATETIME="$DATE $(date '+%H:%M:%S %z')"
+SLUG="$(printf '%s' "$TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g; s/--*/-/g; s/^-//; s/-$//')"
+FILE="_posts/${DATE}-${SLUG}.md"
 
-# Parse tags
-TAGS="$2"
-if [ -n "$TAGS" ]; then
-    # Convert comma-separated tags to YAML array format
-    TAG_ARRAY=$(echo "$TAGS" | sed 's/,/, /g' | sed 's/^/[/' | sed 's/$/]/')
+if [ -n "${2:-}" ]; then
+  TAGS="[$(printf '%s' "$2" | sed 's/ *, */, /g')]"
 else
-    TAG_ARRAY="[]"
+  TAGS="[]"
 fi
 
-# Create the post file
-cat > "$FILEPATH" << EOF
+if [ -e "$FILE" ]; then echo "Refusing to overwrite existing $FILE"; exit 1; fi
+
+cat > "$FILE" <<EOF
 ---
 layout: post
 title: "$TITLE"
 date: $DATETIME
-tags: $TAG_ARRAY
+tags: $TAGS
 author: Benjamin Tokgöz
-# AI Transparency (uncomment and fill as needed)
-# ai_dialogue_model: "Claude 3.5 Sonnet"
-# ai_generation_model: "Claude 3.5 Sonnet" 
-# ai_prompts:
-#   - type: "Initial Dialogue Prompt"
-#     model: "Claude 3.5 Sonnet"
-#     content: |
-#       Your prompt content here...
-#   - type: "Blog Generation Prompt"
-#     model: "Claude 3.5 Sonnet"
-#     content: |
-#       Your blog generation prompt here...
+published: false   # flip to true (or remove) when ready
+# AI transparency — shown in the manifest and the prompt.txt tab
+ai_dialogue_model: "GPT-5"
+ai_generation_model: "GPT-5"
+ai_prompts:
+  - type: "Initial Dialogue Prompt"
+    model: "GPT-5"
+    content: |
+      Serve as a highly critical intellectual opponent. Challenge every idea,
+      argument, and fact I present. Only agree when I am absolutely correct;
+      otherwise question, critique, and verify with web searches (cite links).
+      Keep it conversational — natural for voice chat on a walk.
+  - type: "Blog Generation Prompt"
+    model: "GPT-5"
+    content: |
+      Turn the following conversation transcript into a polished blog post in my
+      voice as the sole author. Do not mention the conversation or any AI. Keep
+      all facts and sources, show where my view evolved, and end with references.
+# Sources — shown in the collapsible sources block
+links_used: []
+books: []
 ---
 
-## Introduction
+Write the finished post here, in Markdown.
 
-Write your introduction here...
-
-## Main Content
-
-Your main content goes here...
-
-## Conclusion
-
-Wrap up your thoughts...
-
----
-
-*What are your thoughts on this topic? Feel free to engage with the ideas presented here.*
+<!-- Optional: to publish the raw walk transcript too, add a line with
+     <!-- TRANSCRIPT --> and put the conversation below it. -->
 EOF
 
-echo "Created new post: $FILEPATH"
-echo "Opening in your default editor..."
-
-# Try to open in common editors
-if command -v code &> /dev/null; then
-    code "$FILEPATH"
-elif command -v vim &> /dev/null; then
-    vim "$FILEPATH"
-elif command -v nano &> /dev/null; then
-    nano "$FILEPATH"
-else
-    echo "Please open $FILEPATH in your preferred editor."
-fi
+echo "Created $FILE"

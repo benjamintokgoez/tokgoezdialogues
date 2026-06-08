@@ -1,0 +1,51 @@
+---
+layout: default
+---
+
+<p class="cmdline"><span class="prompt">$</span> <span class="cmd">cat README.md</span></p>
+<section class="readme">
+  <h1>{{ site.title }}<span class="cursor" aria-hidden="true"></span></h1>
+  <p class="tagline"># {{ site.tagline }}</p>
+  {{ content }}
+</section>
+
+{% if site.tags.size > 0 %}
+<section class="filter">
+  <p class="cmdline"><span class="prompt">$</span> <span class="cmd">ls posts/ | grep --tag &lt;name&gt;</span></p>
+  <div class="tags" id="tag-filter" role="group" aria-label="Filter entries by tag">
+    {% assign tag_list = site.tags | sort %}
+    {% for tag in tag_list %}
+      <button class="tag" type="button" data-tag="{{ tag[0] | slugify }}" aria-pressed="false">{{ tag[0] }}<span class="n">{{ tag[1] | size }}</span></button>
+    {% endfor %}
+  </div>
+  <p class="filter-status" id="filter-status" aria-live="polite"></p>
+</section>
+{% endif %}
+
+<p class="cmdline"><span class="prompt">$</span> <span class="cmd">ls -lt posts/</span></p>
+<ul class="listing full" id="listing">
+  {% for post in site.posts %}
+    {%- assign slugs = '' -%}
+    {%- for t in post.tags -%}{%- assign tslug = t | slugify -%}{%- assign slugs = slugs | append: tslug | append: '|' -%}{%- endfor -%}
+    {%- assign words = post.content | number_of_words -%}
+    {%- assign rt = words | divided_by: 200 | plus: 1 -%}
+    <li class="entry" data-tags="{{ slugs }}">
+      <a class="entry-link" href="{{ post.url | relative_url }}">
+        <div class="entry-meta">
+          <span class="perm">-rw-r--r--</span>
+          <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
+          <span>{{ rt }} min read</span>
+        </div>
+        <div class="entry-title">{{ post.title | escape }}</div>
+        {% assign blurb = post.description | default: post.excerpt %}
+        {% if blurb %}<p class="entry-excerpt">{{ blurb | strip_html | normalize_whitespace | truncatewords: 28 }}</p>{% endif %}
+        {% if post.tags.size > 0 %}
+        <div class="entry-tags">
+          {% for t in post.tags %}<span class="t">{{ t }}</span>{% endfor %}
+        </div>
+        {% endif %}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+<p class="empty" id="listing-empty"># no entries match that filter. <span style="color:var(--cyan)">$ clear</span> to reset.</p>

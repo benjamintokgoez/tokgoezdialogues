@@ -1,53 +1,50 @@
-# Tokgöz Dialogues - Jekyll Configuration
-#
-# @author Benjamin Tokgöz <https://github.com/benjamintokgoez>
-# @created 2025-08-07
-# @updated 2025-08-07
-# @description Main Jekyll configuration for blog site
-# @license MIT
-#
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-
-# Site settings
+# ─── Site ────────────────────────────────────────────────────────────────────
 title: "Tokgöz Dialogues"
-description: "Conversations with critical AI and reflections on technology, philosophy and more."
-baseurl: ""
-url: "https://tokgoezdialogues.com"
+tagline: "Come and join me for a walk with my dog."
+description: >-
+  Conversations with a critical AI and reflections on technology, philosophy and
+  more — recorded on walks with my dog Linux, run through a transparent prompt,
+  and published with the prompts and sources in full.
+author: "Benjamin Tokgöz"
+email: "b.tokgoez@protonmail.com"
 
-# Build settings
+# Custom domain (see CNAME). Served at the root, so baseurl is empty.
+url: "https://tokgoezdialogues.com"
+baseurl: ""
+
+github_username: benjamintokgoez
+
+# Social handles (rendered in the footer + command palette)
+social:
+  github: benjamintokgoez
+  twitter: benn0rs
+  linkedin: tokgoez
+  bluesky: benn0rs.bsky.social
+  mastodon: "@benn0rs@fosstodon.org"
+  mastodon_url: "https://fosstodon.org/@benn0rs"
+
+# ─── Build ───────────────────────────────────────────────────────────────────
 markdown: kramdown
 highlighter: rouge
-theme: minima
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
+
+# Preserve the existing live URLs.
+permalink: /:categories/:year/:month/:day/:title/
+timezone: Europe/Berlin
+future: true
+
+sass:
+  style: compressed
+
 plugins:
   - jekyll-feed
-  - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-sitemap
 
-# Exclude from processing
-exclude:
-  - .sass-cache/
-  - .jekyll-cache/
-  - gemfiles/
-  - Gemfile
-  - Gemfile.lock
-  - node_modules/
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
-
-# Collections
-collections:
-  posts:
-    output: true
-    permalink: /:categories/:year/:month/:day/:title/
-
-# Default values
+# ─── Defaults ────────────────────────────────────────────────────────────────
 defaults:
   - scope:
       path: ""
@@ -55,44 +52,21 @@ defaults:
     values:
       layout: "post"
       author: "Benjamin Tokgöz"
-      show_excerpts: true
+  - scope:
+      path: ""
+    values:
+      layout: "page"
 
-# Syntax highlighting
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
-  syntax_highlighter_opts:
-    css_class: 'highlight'
-    span:
-      line_numbers: false
-    block:
-      line_numbers: false
+feed:
+  path: /feed.xml
 
-# SEO
-author:
-  name: Benjamin Tokgöz
-  
-social:
-  name: Benjamin Tokgöz
-  github: benjamintokgoez
-  twitter: benn0rs
-  linkedin: tokgoez
-  mastodon:
-    - username: benn0rs
-      instance: fosstodon.org
-  links:
-    - https://github.com/benjamintokgoez
-    - https://www.linkedin.com/in/tokgoez/
-    - https://x.com/benn0rs
-    - https://bsky.app/profile/benn0rs.bsky.social
-    - https://fosstodon.org/@benn0rs
-
-# Social media configuration for minima theme
-minima:
-  social_links:
-    github: benjamintokgoez
-    twitter: benn0rs
-    linkedin: tokgoez
-    mastodon:
-      - username: benn0rs
-        instance: fosstodon.org
+# ─── Exclude from the build ──────────────────────────────────────────────────
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - README.md
+  - .github
+  - "*.gem"
+  - "*.sh"
+  - node_modules

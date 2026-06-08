@@ -1,31 +1,21 @@
-{%- comment -%}
-/**
- * Tokgöz Dialogues - Default Layout Template
- * 
- * @author Benjamin Tokgöz <https://github.com/benjamintokgoez>
- * @created 2025-08-07
- * @updated 2025-08-07
- * @description Main HTML layout template for Jekyll site
- * @license MIT
- */
-{%- endcomment -%}
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
-
+<html lang="en" data-theme="dark">
+<head>
   {%- include head.html -%}
+</head>
+<body>
+  <a class="skip" href="#main">skip to content</a>
+  {%- if page.layout == 'post' -%}<div class="progress" aria-hidden="true"></div>{%- endif -%}
 
-  <body>
-
+  <div class="window">
     {%- include header.html -%}
-
-    <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
+    <main class="content" id="main">
+      {{ content }}
     </main>
-
     {%- include footer.html -%}
+  </div>
 
-  </body>
-
+  {%- include palette.html -%}
+  <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+</body>
 </html>

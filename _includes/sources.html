@@ -1,0 +1,21 @@
+<details class="sources">
+  <summary><span class="prompt">$</span> cat sources.md</summary>
+  <div class="sources-body">
+    {%- if page.links_used.size > 0 -%}
+    <h3>Links &amp; further reading</h3>
+    <ul>
+      {%- for l in page.links_used -%}
+      <li><a href="{{ l.url }}" rel="noopener" target="_blank">{{ l.title | escape }}</a>{% if l.description %} — {{ l.description | escape }}{% endif %}</li>
+      {%- endfor -%}
+    </ul>
+    {%- endif -%}
+    {%- if page.books.size > 0 -%}
+    <h3>Books</h3>
+    <ul>
+      {%- for b in page.books -%}
+      <li><strong>{{ b.title | escape }}</strong>{% if b.author %} — {{ b.author | escape }}{% endif %}{% if b.description %}. {{ b.description | escape }}{% endif %}</li>
+      {%- endfor -%}
+    </ul>
+    {%- endif -%}
+  </div>
+</details>

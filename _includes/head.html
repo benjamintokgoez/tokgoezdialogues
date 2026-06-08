@@ -1,26 +1,36 @@
-{%- comment -%}
-/**
- * Tokgöz Dialogues - HTML Head Include
- * 
- * @author Benjamin Tokgöz <https://github.com/benjamintokgoez>
- * @created 2025-08-07
- * @updated 2025-08-07
- * @description HTML head section with meta tags and theme toggle script
- * @license MIT
- */
-{%- endcomment -%}
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  {%- seo -%}
-  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="{{ "/favicon.svg" | relative_url }}">
-  {%- feed_meta -%}
-  {%- if jekyll.environment == 'production' and site.google_analytics -%}
-    {%- include google-analytics.html -%}
-  {%- endif -%}
-</head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a1b26" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#e1e2e7" media="(prefers-color-scheme: light)">
+
+{% comment %} No-flash theme: apply stored/preferred theme before first paint. {% endcomment %}
+<script>
+  (function () {
+    var d = document.documentElement;
+    d.classList.add("js"); // gate JS-only UI (palette, filter, tabs) for graceful no-JS fallback
+    var t;
+    try { t = localStorage.getItem("td-theme"); } catch (e) {}
+    if (!t) { try { t = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"; } catch (e) { t = "dark"; } }
+    d.dataset.theme = t;
+  })();
+</script>
+
+{% seo %}
+{% feed_meta %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ '/assets/css/terminal.css' | relative_url }}">
+<link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+
+<script>
+  window.TD = {
+    home:      "{{ '/' | relative_url }}",
+    about:     "{{ '/about/' | relative_url }}",
+    feed:      "{{ '/feed.xml' | relative_url }}",
+    searchUrl: "{{ '/search.json' | relative_url }}",
+    repo:      "https://github.com/{{ site.github_username }}/tokgoezdialogues"
+  };
+</script>
