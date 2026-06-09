@@ -1,38 +1,42 @@
 /* =============================================================================
    Tokgoez Dialogues — terminal design system
-   Palette: Tokyo Night (dark) / Tokyo Night Day (light)
+   Palette: monochrome (black & white) + a single green accent, both modes
    ========================================================================== */
 
 /* ── Design tokens ───────────────────────────────────────────────────────── */
 :root {
   color-scheme: dark;
 
-  /* Tokyo Night (dark) — default */
-  --bg:          #1a1b26; /* editor background          */
-  --bg-deep:     #16161e; /* terminal void / behind app */
-  --bg-panel:    #1f2335; /* cards, chrome              */
-  --bg-elevated: #24283b; /* hover, active rows         */
-  --bg-inline:   #292e42; /* inline code               */
+  /* Monochrome (black & white) + a single green accent — default (dark) */
+  --bg:          #0a0a0a; /* near-black background      */
+  --bg-deep:     #000000; /* terminal void             */
+  --bg-panel:    #141414; /* cards, chrome             */
+  --bg-elevated: #1f1f1f; /* hover, active rows        */
+  --bg-inline:   #1a1a1a; /* inline code              */
 
-  --fg:          #c0caf5; /* primary text              */
-  --fg-muted:    #9aa5ce; /* secondary text            */
-  --fg-dim:      #828bb8; /* comments, metadata (AA ≥4.5:1) */
-  --border:      #2a2e44;
-  --border-soft: #222536;
+  --fg:          #ededed; /* primary text (white)     */
+  --fg-muted:    #a8a8a8; /* secondary text           */
+  --fg-dim:      #8a8a8a; /* comments, metadata (AA)  */
+  --border:      #262626;
+  --border-soft: #1b1b1b;
 
-  --blue:    #7aa2f7;
-  --cyan:    #7dcfff;
-  --green:   #9ece6a;
-  --magenta: #bb9af7;
-  --red:     #f7768e;
-  --orange:  #ff9e64;
-  --yellow:  #e0af68;
-  --teal:    #73daca;
+  /* The one accent */
+  --green:   #4ade80;
 
-  --accent:       var(--blue);
-  --accent-soft:  rgba(122, 162, 247, 0.14);
-  --prompt:       var(--green);   /* the $ */
-  --path:         var(--cyan);    /* ~/path */
+  /* Legacy hue slots collapsed to monochrome / green */
+  --blue:    var(--green);
+  --cyan:    var(--green);
+  --teal:    var(--green);
+  --magenta: var(--fg-dim);
+  --red:     var(--fg-muted);
+  --orange:  var(--fg-muted);
+  --yellow:  var(--fg-muted);
+
+  --accent:       var(--green);
+  --accent-soft:  rgba(74, 222, 128, 0.16);
+  --prompt:       var(--green);    /* the $ */
+  --path:         var(--fg-muted); /* ~/path */
+  --glow:         rgba(74, 222, 128, 0.05); /* faint green top glow */
 
   /* Fonts */
   --mono: "JetBrains Mono", "Fira Code", "DejaVu Sans Mono", "Ubuntu Mono",
@@ -53,34 +57,36 @@
 [data-theme="light"] {
   color-scheme: light;
 
-  /* Tokyo Night Day */
-  --bg:          #e1e2e7;
-  --bg-deep:     #d6d8df;
-  --bg-panel:    #e9e9ed;
-  --bg-elevated: #d4d6e4;
-  --bg-inline:   #cdcfdd;
+  /* Monochrome (white & black) + a single green accent — light */
+  --bg:          #ffffff;
+  --bg-deep:     #f4f4f4;
+  --bg-panel:    #f7f7f7;
+  --bg-elevated: #ececec;
+  --bg-inline:   #ededed;
 
-  --fg:          #3760bf;
-  --fg-muted:    #4a5fa1; /* AA ≥4.5:1 on light bg/panel */
-  --fg-dim:      #535c8c; /* AA ≥4.5:1 on light bg/panel */
-  --border:      #c4c8da;
-  --border-soft: #cdd0df;
+  --fg:          #141414; /* near-black text */
+  --fg-muted:    #424242;
+  --fg-dim:      #6b6b6b; /* AA on white/panel */
+  --border:      #e2e2e2;
+  --border-soft: #eeeeee;
 
-  --blue:    #2e7de9;
-  --cyan:    #007197;
-  --green:   #587539;
-  --magenta: #9854f1;
-  --red:     #f52a65;
-  --orange:  #b15c00;
-  --yellow:  #8c6c3e;
-  --teal:    #118c74;
+  --green:   #197a3a;
 
-  --accent:      var(--blue);
-  --accent-soft: rgba(46, 125, 233, 0.12);
+  --blue:    var(--green);
+  --cyan:    var(--green);
+  --teal:    var(--green);
+  --magenta: var(--fg-dim);
+  --red:     var(--fg-muted);
+  --orange:  var(--fg-muted);
+  --yellow:  var(--fg-muted);
+
+  --accent:      var(--green);
+  --accent-soft: rgba(25, 122, 58, 0.12);
   --prompt:      var(--green);
-  --path:        var(--cyan);
+  --path:        var(--fg-muted);
+  --glow:        rgba(0, 0, 0, 0); /* no glow on white */
 
-  --shadow: 0 18px 50px -24px rgba(48, 68, 130, 0.35);
+  --shadow: 0 18px 50px -24px rgba(0, 0, 0, 0.18);
 }
 
 /* ── Reset ───────────────────────────────────────────────────────────────── */
@@ -98,7 +104,7 @@ body {
   line-height: 1.7;
   color: var(--fg);
   background:
-    radial-gradient(1200px 600px at 80% -10%, rgba(122,162,247,0.08), transparent 60%),
+    radial-gradient(1200px 600px at 80% -10%, var(--glow), transparent 60%),
     var(--bg-deep);
   min-height: 100vh;
   display: flex;
@@ -154,7 +160,7 @@ kbd {
 .progress {
   position: fixed; inset: 0 auto auto 0;
   height: 2px; width: 0;
-  background: linear-gradient(90deg, var(--green), var(--cyan), var(--magenta));
+  background: var(--green);
   z-index: 60;
   transition: width 0.1s linear;
 }
@@ -241,7 +247,7 @@ kbd {
 .nav .ps1 .host { color: var(--green); }
 .nav .ps1 .sep  { color: var(--fg-dim); }
 .nav .ps1 .cwd  { color: var(--path); }
-.nav .ps1 .dollar { color: var(--magenta); margin-left: 0.15rem; }
+.nav .ps1 .dollar { color: var(--prompt); margin-left: 0.15rem; }
 .nav-links { display: flex; flex-wrap: wrap; gap: 0.1rem 1.1rem; }
 .nav-links a {
   color: var(--fg-muted);
@@ -328,8 +334,8 @@ kbd {
 .tag .n { color: var(--fg-dim); margin-left: 0.3rem; font-size: 0.92em; }
 .tag[aria-pressed="true"] {
   color: var(--bg);
-  background: var(--magenta);
-  border-color: var(--magenta);
+  background: var(--green);
+  border-color: var(--green);
 }
 .tag[aria-pressed="true"]::before,
 .tag[aria-pressed="true"] .n { color: var(--bg); opacity: 0.85; }
@@ -458,8 +464,8 @@ a.tag:hover { text-decoration: none; }
   border-color: var(--border);
 }
 .tab[data-kind="output"][aria-selected="true"] .dot { color: var(--green); }
-.tab[data-kind="prompt"][aria-selected="true"] .dot { color: var(--magenta); }
-.tab[data-kind="walk"][aria-selected="true"]   .dot { color: var(--cyan); }
+.tab[data-kind="prompt"][aria-selected="true"] .dot { color: var(--green); }
+.tab[data-kind="walk"][aria-selected="true"]   .dot { color: var(--green); }
 
 .tabpanel {
   padding: 1.4rem 0.1rem 0.2rem;
@@ -559,7 +565,7 @@ figure.dog figcaption { color: var(--fg-dim); font-size: 0.85rem; margin-top: 0.
 .prose ul, .prose ol { padding-left: 1.4rem; }
 .prose li::marker { color: var(--magenta); }
 .prose strong { color: var(--fg); font-weight: 600; }
-.prose em { color: var(--yellow); font-style: normal; }
+.prose em { color: inherit; font-style: italic; }
 .prose hr { border: none; border-top: 1px dashed var(--border); margin: 2rem 0; }
 
 .prose blockquote {
