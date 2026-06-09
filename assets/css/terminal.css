@@ -286,7 +286,7 @@ kbd {
 .readme {
   background: var(--bg-panel);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--green);
+  border-left: 3px solid var(--fg); /* white in dark, black in light */
   border-radius: var(--radius-sm);
   padding: 1.1rem 1.3rem;
   margin-bottom: 2rem;
